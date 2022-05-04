@@ -1,0 +1,18 @@
+{
+  "name": "simple-jest-demo",
+  "version": "1.0.0",
+  "description": "my first jest demo using js project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "jest",
+    "unit-test"
+  ],
+  "author": "Arun VJ",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^28.0.3"
+  }
+}

@@ -76,3 +76,19 @@ Approach:
 
 =======
 
+NPM Dependencies
+---
+  1. Project Dependencies (dependencies)
+      * packages needed for the feature of the app to work 
+      * will be part of deployable codebase
+      npm i dropzone --save 
+      npm i dropzone 
+
+  2. Dev Dependencies (devDependencies)
+      * package needed only during the time of dev 
+      * only for better, smoother dev workflow 
+      * will never be part of deployable codebase
+      npm i jest --save-dev
+      npm i jest -D 
+
+

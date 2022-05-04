@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1651670160843" clover="3.2.0">
+  <project timestamp="1651670160843" name="All files">
+    <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2" elements="10" coveredelements="10" complexity="0" loc="8" ncloc="8" packages="1" files="3" classes="3"/>
+    <file name="add.js" path="/Users/arun/Documents/Course Materials/Cognizant-DTP-Training/May2022/jest-enz-examples-may2022/simple-jest-demo/add.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+    </file>
+    <file name="random.js" path="/Users/arun/Documents/Course Materials/Cognizant-DTP-Training/May2022/jest-enz-examples-may2022/simple-jest-demo/random.js">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+    </file>
+    <file name="sample.js" path="/Users/arun/Documents/Course Materials/Cognizant-DTP-Training/May2022/jest-enz-examples-may2022/simple-jest-demo/sample.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
