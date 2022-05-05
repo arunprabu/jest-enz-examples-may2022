@@ -36,6 +36,10 @@
     ]
   },
   "devDependencies": {
-    "jest-watcher": "^28.0.2"
+    "jest-watcher": "^28.0.2",
+    "msw": "^0.39.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

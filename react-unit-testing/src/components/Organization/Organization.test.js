@@ -26,9 +26,5 @@ describe('Organization', () => {
     expect(officialTxtEl).toBeInTheDocument();
   });
 
-  
-
-
-
 });
 

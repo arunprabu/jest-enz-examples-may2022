@@ -1,0 +1,69 @@
+Steps to Mock API calls
+-----------------------
+npm i msw -D
+npx msw init public     (public is the folder in which we setup workerDirectory )
+
+the above command will create mockServiceWorker.js 
+you don't need to modify anything in the file 
+
+now, create mocks/browser.js 
+  // to describe what API Endpoints should be mocked
+  import {  setupWorker } from 'msw';
+  import { handlers } from './handlers';
+
+  const worker = setupWorker(
+    ...handlers, // all  mock api calls will be in this file
+  );
+
+  worker.start();
+
+and, then, create mocks/handlers.js 
+  import { rest } from "msw";
+
+  export const handlers = [
+    rest.get('https://jsonplaceholder.typicode.com/todos', (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json([{
+          userId: 1,
+          id: 1,
+          title: "delectus aut autem",
+          completed: false
+        },
+        {
+          userId: 1,
+          id: 2,
+          title: "quis ut nam facilis et officia qui",
+          completed: false
+        }])
+      )
+    }),
+    // you can try post method like this..
+    /* rest.post('https://jsonplaceholder.typicode.com/todos/', (req, res, ctx) => {
+      return res(
+        ctx.status(201),
+        ctx.json({
+          userId: 1,
+          id: 11,
+          title: "delectus aut autem",
+          completed: false
+        })
+      )
+    }) */
+  ]
+
+----
+Finally, finish the setup after adding the following lines in src/index.js 
+after imports add the following lines 
+
+  // Start the mocking conditionally.
+  if (process.env.NODE_ENV === 'development') {
+    require('./mocks/browser');
+  }
+
+---
+then, check the app by starting the server 
+  npm start 
+
+Then, open the browser console and check the logs 
+---
