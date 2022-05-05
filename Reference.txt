@@ -29,6 +29,10 @@ Disadv
   * time taken to complete dev is more 
   * big qa team is needed 
  
+
+=======
+Ref: https://www.freecodecamp.org/news/testing-react-hooks/
+
 Automated Testing 
 ---
   0. Static-type checking (TypeScript, FlowJS, PropTypes )
@@ -43,11 +47,19 @@ Automated Testing
       * different unit, modules or components are tested as combined entity 
       * behaviour of the app would be tested 
       * to expose issues in the integration between integrated units 
+      * Usually done with mounting or rendering a component. 
+      * example: test if a child component can update context state in a parent.
 
       Tools: Jest &  React Testing Library vs Jest & Enzyme (jquery like tool -- for dom traversal)
 
   3. End 2 End Testing (E2E Testing)
       * Testing the whole app. 
+      * Usually a multi step test combining multiple unit and integration tests 
+        into one big test.
+      *  Usually very little is mocked or stubbed. 
+      * Tests are done in a simulated browser, there may or may not be a 
+        UI while the test is running. 
+      * example: testing an entire authentication flow.
 
       Tools: CypressJS, Selenium, Protractor
 
@@ -76,6 +88,41 @@ Approach:
 
 =======
 
+Why Test? #
+It’s good to understand why we doing something before doing it. So, why test, and what is its purpose?
+
+The first purpose of testing is to prevent regression. Regression is the reappearance of a bug that had previously been fixed. It makes a feature stop functioning as intended after a certain event occurs.
+Testing ensures the functionality of complex components and modular applications.
+Testing is required for the effective performance of a software application or product.
+Testing makes an app more robust and less prone to error. It’s a way to verify that your code does what you want it to do and that your app works as intended for your users.
+
+=======
+
+let’s learn some basics. Some key things are used a lot in this article, 
+and you’ll need to understand them.
+
+it or test: 
+  You would pass a function to this method, and the test runner would execute that function as a block of tests.
+
+describe: 
+  This optional method is for grouping any number of it or test statements.
+
+expect: 
+  This is the condition that the test needs to pass. It compares the received 
+  parameter to the matcher. It also gives you access to a number of matchers 
+  that let you validate different things. You can read more about it in the 
+  documentation.
+
+shallow: 
+  This renders only the individual components that we are testing. 
+  It does not render child components. 
+  This enables us to test components in isolation.
+
+mount: 
+  This method renders the full DOM, including the child components of the parent 
+  component, in which we are running the tests.
+===========
+
 NPM Dependencies
 ---
   1. Project Dependencies (dependencies)
@@ -91,4 +138,133 @@ NPM Dependencies
       npm i jest --save-dev
       npm i jest -D 
 
+-----
+Advantages And Disadvantages Of Testing #
+Testing is great and should be done, but it has advantages and disadvantages.
+
+ADVANTAGES #
+  It prevents unexpected regression.
+  It allows the developer to focus on the current task, rather than worrying 
+  about the past.
+  It allows modular construction of an application that would otherwise be too 
+  complex to build.
+  It reduces the need for manual verification.
+
+DISADVANTAGES #
+  You need to write more code, as well as debug and maintain.
+  Non-critical test failures might cause the app to be rejected in terms of 
+  continuous integration.
+
+===
+SNAPSHOT TEST #
+  A snapshot test makes sure that the user interface (UI) of a web application 
+  does not change unexpectedly. It captures the code of a component at a moment 
+  in time, so that we can compare the component in one state with any other 
+  possible state it might take.
+
+
+=======================================
+Enzyme - TUTORIAL
+===
+Note: The following will work only on react 16 project. 
+  npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
+
+Enzyme's fate is ended! In Apr 2022, we got React 18. 
+From Enzyme Team, no official adapter released since two years or more. 
+Enzyme did not even release an official adapter for React 17. 
+There is no plan from enzyme team to release an updated adapter for React 18. 
+
+React Testing Library is the better and right alternative. 
+Refer the migration guide: https://testing-library.com/docs/react-testing-library/migrate-from-enzyme
+
+
+Enzyme is intended for unit/integration testing. 
+  Its API was designed to test the implementation. 
+  It offers custom renderer that doesn't require DOM (for shallow rendering), 
+  behaves differently from React renderer and allows things that are important 
+  for unit testing but aren't possible or straightforward with default renderer, 
+  like synchronous state updates, shallow rendering, disabling lifecycle methods, etc.
+
+react-testing-library is intended for blackbox integration/e2e tests. 
+  It uses React renderer and ReactTestUtils internally, 
+  requires real DOM because it's component's output that is asserted in tests, 
+  not internals. It doesn't provide facilities for isolated unit tests but it's 
+  possible to do this by mocking modules that contain component that need to be 
+  spied, mocked or stubbed by other means, notably jest.mock.
+
+
+
+in sample.test.js file, 
+  import { configure } from "enzyme";
+  import Adapter from "enzyme-adapter-react-16";
+  configure({ adapter: new Adapter() });
+
+  it("renders without crashing", () => {
+    shallow(<App />);
+  });
+
+  it("renders Account header", () => {
+    const wrapper = shallow(<App />);
+    const welcome = <h1>Display Active Users Account Details</h1>;
+    expect(wrapper.contains(welcome)).toEqual(true);
+  });
+
+---
+
+Skipping tests
+---
+it.skip('', ()=>{
+
+})
+
+or else 
+
+xit('', ()=>{
+
+})
+
+======
+
+Mocking Function #
+A mock is a convincing duplicate of an object or module without any real 
+inner workings. It might have a tiny bit of functionality, but compared to 
+the real thing, it’s a mock. It can be created automatically by Jest or manually.
+
+Why should we mock? Mocking reduces the number of dependencies — that is, 
+the number of related files that have to be loaded and parsed when a test is run. 
+So, using a lot of mocks makes tests execute more quickly.
+
+Mock functions are also known as “spies”, because they let you spy on the 
+behavior of a function that is called directly by some other code, rather than 
+only testing the output.
+
+There are two ways to mock a function: either by creating a mock function to 
+use it in test code, or by writing a manual mock to override a module dependency.
+
+Manual mocks ****are used to stub out functionality with mock data. For example, 
+instead of accessing a remote resource, like a website or a database, you might 
+want to create a manual mock that allows you to use fake data.
+
+====
+Topics to Cover
+---
+  Jest Testing is React App 
+  Test using React Testing Library 
+
+  use both Jest & React Testing Library to finish testing the following in React Project 
+  1. renders the  comp properly
+  2. testing random fn / variable in a comp
+  3. should display the prop correctly
+  4. should have the right placeholder in input
+  5. whether the comp has right text inside an element 
+  6. check if the input element works well with onChange event
+  7. focus on snapshot testing
+
+Friday
+--
+  1. class component
+  2. call back function Ref: https://jestjs.io/docs/asynchronous#callbacks
+  3. Mocking using JEST 
+  4. API’s testing using jest mocking (using Mock Service Worker)
+  5. Notes on Enzyme 
 
