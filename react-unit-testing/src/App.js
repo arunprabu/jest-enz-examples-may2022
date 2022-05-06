@@ -4,6 +4,8 @@ import Counter from './components/Counter/Counter';
 import Organization from './components/Organization/Organization';
 import Theme from './components/Theme/Theme';
 import Todos from './components/Todos/Todos';
+import Users from './components/Users/Users';
+import Movies from './containers/Movies/Movies';
 
 function App() {
   return (
@@ -16,14 +18,19 @@ function App() {
       <Organization />
       <hr/>
 
+      <Movies />
+      <hr/>
+
       <Counter />
       <hr/>
 
       <Theme />
       <hr/>
 
-      <Todos />
-      <hr />
+      {/* <Todos />
+      <hr /> */}
+
+      <Users />
 
     </div>
   );

@@ -37,7 +37,8 @@
   },
   "devDependencies": {
     "jest-watcher": "^28.0.2",
-    "msw": "^0.39.2"
+    "msw": "^0.39.2",
+    "react-test-renderer": "^18.1.0"
   },
   "msw": {
     "workerDirectory": "public"

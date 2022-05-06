@@ -9,16 +9,21 @@ describe('Counter', () => {
     expect(counterTxtEl.textContent).toBe("0");
   });
   
-  it("has proper Increment and decrement buttons logic", () => {
+  it('has proper increment and decrement buttons', () => {
     render(<Counter />);
-    const countValue = screen.getByTestId('counterTxt');
-    const incrementEl = screen.getByTestId("incrementButton");
-    const decrementEl = screen.getByTestId("decrementButton");
-    expect(countValue.textContent).toBe("0");
-    fireEvent.click(incrementEl);
-    expect(countValue.textContent).toBe("1");
-    fireEvent.click(decrementEl);
-    expect(countValue.textContent).toBe("0");
+    const counterTxtEl = screen.getByTestId('counterTxt');
+    // finding the two buttons 
+    const incrementBtnEl = screen.getByTestId('incrementButton');
+    const decrementBtnEl = screen.getByTestId('decrementButton');
+    // before mock firing the event, let's check whther the initial count is 0
+    expect(counterTxtEl.textContent).toBe("0");
+    // let's mock fire the event  of increment button
+    fireEvent.click(incrementBtnEl);
+    expect(counterTxtEl.textContent).toBe("1");
+
+    // let's mock fire the event  of decrement button
+    fireEvent.click(decrementBtnEl);
+    expect(counterTxtEl.textContent).toBe("0");
   });
 });
 

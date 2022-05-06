@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import ReactDOM from 'react-dom/client';
 import Organization from "./Organization";
+import renderer from 'react-test-renderer';
 
 describe('Organization', () => { 
 
@@ -24,6 +25,26 @@ describe('Organization', () => {
     render(<Organization />);
     const officialTxtEl = screen.getByText('Welcome to My Company\'s Official Website');
     expect(officialTxtEl).toBeInTheDocument();
+  });
+
+  // test case #4 -- to test events in react
+  it('should update text input when onChange occurs', () => {
+    render(<Organization />);
+    // finding the element using getByTestId 'companyNameInput'
+    const companyNameInputEl =  screen.getByTestId('companyNameInput');
+    // now check whether onChange working or not 
+    // mock fire change event -- with the value 
+    fireEvent.change(companyNameInputEl, { target: {value: 'test123'}});
+    // finally check if the input is getting the updated data
+    expect(companyNameInputEl.value).toBe('test123');
+  });
+
+  // snapshot testing
+  it('should have right company comp snapshot', () => {
+    // to take snapshot we need a tool 'react-test-renderer' -- npm i react-test-renderer -D 
+    const snapShotTree = renderer.create(<Organization orgName="Cognizant Pvt Ltd"/> ).toJSON();
+   // console.log(snapShotTree);
+    expect(snapShotTree).toMatchSnapshot();
   });
 
 });
