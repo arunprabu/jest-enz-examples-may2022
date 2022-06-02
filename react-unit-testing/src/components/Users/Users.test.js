@@ -6,7 +6,7 @@ jest.mock('../../api/users');
 
 describe('Users', () => { 
   // as the following is gonna get data after sometime, it should have async await.
-  // testing upon api request -mocking successful api call
+  // instead we can mock. testing upon api request -mocking successful api call
   it('should render comp properly with api data', async () => {
     api.fetchUsersAPI.mockResolvedValue([{
         id: 1,

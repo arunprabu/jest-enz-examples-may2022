@@ -2,6 +2,7 @@ import './App.css';
 import About from './components/About/About';
 import Counter from './components/Counter/Counter';
 import Organization from './components/Organization/Organization';
+import Search from './components/Search/Search';
 import Theme from './components/Theme/Theme';
 import Todos from './components/Todos/Todos';
 import Users from './components/Users/Users';
@@ -31,6 +32,9 @@ function App() {
       <hr /> */}
 
       <Users />
+
+      <hr/>
+      <Search />
 
     </div>
   );
